@@ -1,130 +1,303 @@
-## Overview
+# Microsoft Bot Framework Web Chat
 
-This repository contains samples for the Microsoft [**Bot Builder V3 SDK**](https://github.com/microsoft/botbuilder). 
+Embeddable web chat control for the [Microsoft Bot Framework](http://www.botframework.com) using the [DirectLine](https://docs.botframework.com/en-us/restapi/directline3/) API.
 
-Samples for the Bot Builder V4 SDK are available under the respective repositories - [dotnet](https://github.com/microsoft/botbuilder-dotnet), [JS](https://github.com/microsoft/botbuilder-js), [Java](https://github.com/microsoft/botbuilder-java), [Python](https://github.com/microsoft/botbuilder-python).
+Used by the Bot Framework developer portal, [Emulator](https://github.com/Microsoft/BotFramework-Emulator), Web Chat channel, and [Azure Bot Service](https://azure.microsoft.com/en-us/services/bot-service/)
 
+Web Chat is available both as a [React](https://facebook.github.io/react/) component and as a self-contained control easily usable by any non-React website. Under the covers, Web Chat is built with [TypeScript](http://www.typescriptlang.org) using [Redux](http://redux.js.org) for state management and [RxJS](http://reactivex.io/rxjs/) for wrangling async.
 
-Samples are organized into groups and designed to illustrate task-focused samples in C# and Node.js to help you build great bots!  To use the samples clone our GitHub repository using Git.
+You can easily play with the most recent release using [botchattest](https://botchattest.herokuapp.com).
 
-    git clone https://github.com/Microsoft/BotBuilder-Samples.git
-    cd BotBuilder-Samples
+## How to add Web Chat to your website
 
-## Core
-These examples show the basic techniques needed to build a great bot.
+If you haven't already, start by [registering your bot](https://dev.botframework.com/bots/new).
 
-Sample | Description | C# | Node
------------- | ------------- | :-----------: | :-----------:
-Send Attachment | A sample bot that passes simple media attachments (images) to a user activity. | [View Sample](/CSharp/core-SendAttachment)[![Deploy to Azure][Deploy Button]][Deploy CSharp/SendAttachment] | [View Sample](/Node/core-SendAttachment)[![Deploy to Azure][Deploy Button]][Deploy Node/SendAttachment]
-Receive Attachment | A sample bot that receives attachments sent by the user and downloads them. | [View Sample](/CSharp/core-ReceiveAttachment)[![Deploy to Azure][Deploy Button]][Deploy CSharp/ReceiveAttachment] | [View Sample](/Node/core-ReceiveAttachment)[![Deploy to Azure][Deploy Button]][Deploy Node/ReceiveAttachment]
-Create New Conversation | A sample bot that starts a new conversation using a previously stored user address. | [View Sample](/CSharp/core-CreateNewConversation)[![Deploy to Azure][Deploy Button]][Deploy CSharp/CreateNewConversation] | [View Sample](/Node/core-CreateNewConversation)[![Deploy to Azure][Deploy Button]][Deploy Node/CreateNewConversation]
-Proactive Messages | Three sample bots that proactively send a message to the user. | [View Samples](/CSharp/core-proactiveMessages) | [View Samples](/Node/core-proactiveMessages)
-Get Members of a Conversation | A sample bot that retrieves the conversation's members list and detects when it changes. | [View Sample](/CSharp/core-GetConversationMembers)[![Deploy to Azure][Deploy Button]][Deploy CSharp/GetConversationMembers] | [View Sample](/Node/core-GetConversationMembers)[![Deploy to Azure][Deploy Button]][Deploy Node/GetConversationMembers]
-Direct Line | A sample bot and a custom client communicating to each other using the Direct Line API. | [View Sample](/CSharp/core-DirectLine)[![Deploy to Azure][Deploy Button]][Deploy CSharp/DirectLine] | [View Sample](/Node/core-DirectLine)[![Deploy to Azure][Deploy Button]][Deploy Node/DirectLine]
-Direct Line (WebSockets) | A sample bot and a custom client communicating to each other using the Direct Line API + WebSockets. | [View Sample](/CSharp/core-DirectLineWebSockets)[![Deploy to Azure][Deploy Button]][Deploy CSharp/DirectLineWebSockets] | [View Sample](/Node/core-DirectLineWebSockets)[![Deploy to Azure][Deploy Button]][Deploy Node/DirectLineWebSockets]
-Basic Multi Dialogs | A sample bot showing how to use the dialog stack. | [View Sample](/CSharp/core-BasicMultiDialog)[![Deploy to Azure][Deploy Button]][Deploy CSharp/BasicMultiDialog] | [View Sample](/Node/core-basicMultiDialog)[![Deploy to Azure][Deploy Button]][Deploy Node/BasicMultiDialog]
-Multi Dialogs | A sample bot showing different kind of dialogs. | [View Sample](/CSharp/core-MultiDialogs)[![Deploy to Azure][Deploy Button]][Deploy CSharp/MultiDialogs] | [View Sample](/Node/core-MultiDialogs)[![Deploy to Azure][Deploy Button]][Deploy Node/MultiDialogs]
-Global Message Handlers | A sample bot showing the usage of Global Message Handlers to handle global commands and manipulate the dialog stack. | [View Sample](/CSharp/core-GlobalMessageHandlers)[![Deploy to Azure][Deploy Button]][Deploy CSharp/GlobalMessageHandlers] | [View Sample](/Node/core-globalMessageHandlers)[![Deploy to Azure][Deploy Button]][Deploy Node/GlobalMessageHandlers]
-Simple Task Automation | A sample bot showing how to do simple task automation scenarios. | [View Sample](/CSharp/capability-SimpleTaskAutomation)[![Deploy to Azure][Deploy Button]][Deploy CSharp/SimpleTaskAutomation] | [View Sample](/Node/capability-SimpleTaskAutomation)[![Deploy to Azure][Deploy Button]][Deploy Node/SimpleTaskAutomation]
-Progress Dialog | A sample bot that shows how to create a progress dialog that will periodically notify users of the status of a long running task. | | [View Sample](/Node/core-ProgressDialog)[![Deploy to Azure][Deploy Button]][Deploy Node/ProgressDialog]
-State API | A stateless sample bot tracking context of a conversation. | [View Sample](/CSharp/core-State)[![Deploy to Azure][Deploy Button]][Deploy CSharp/State] | [View Sample](/Node/core-State)[![Deploy to Azure][Deploy Button]][Deploy Node/State]
-Custom State API | A stateless sample bot tracking context of a conversation using a custom storage provider. | [View Sample](/CSharp/core-CustomState)[![Deploy to Azure][Deploy Button]][Deploy CSharp/CustomState] | [View Sample](/Node/core-CustomState)[![Deploy to Azure][Deploy Button]][Deploy Node/CustomState]
-ChannelData | A sample bot sending native metadata to Facebook using ChannelData. | [View Sample](/CSharp/core-ChannelData)[![Deploy to Azure][Deploy Button]][Deploy CSharp/ChannelData] | [View Sample](/Node/core-ChannelData)[![Deploy to Azure][Deploy Button]][Deploy Node/ChannelData]
-ChannelData (Share Button) | A sample bot sending native metadata to Facebook to display a Share button. | [View Sample](/CSharp/Blog-CustomChannelData)[![Deploy to Azure][Deploy Button]][Deploy CSharp/BlogCustomChannelData] | [View Sample](/Node/blog-customChannelData)[![Deploy to Azure][Deploy Button]][Deploy Node/BlogCustomChannelData]
-AppInsights | A sample bot which logs telemetry to an Application Insights instance. | [View Sample](/CSharp/core-AppInsights)[![Deploy to Azure][Deploy Button]][Deploy CSharp/AppInsights] | [View Sample](/Node/core-AppInsights)[![Deploy to Azure][Deploy Button]][Deploy Node/AppInsights]
-Middleware Logging | A basic bot that logs incoming and outgoing messages. | [View Sample](/CSharp/core-Middleware)[![Deploy to Azure][Deploy Button]][Deploy CSharp/MiddlewareLogging] | [View Sample](/Node/capability-middlewareLogging)[![Deploy to Azure][Deploy Button]][Deploy Node/MiddlewareLogging]
-Bot in Apps | A sample bot showing how to go beyond by becoming embedded into larger applications. | [View Sample](/CSharp/capability-BotInApps) |
+Now decide how you'd like to use Web Chat.
 
-## Cards
-These examples emphasize the rich card support in Bot Framework.
+### Easiest: In any website, IFRAME the standard Web Chat channel
 
-Sample | Description | C# | Node
------------- | ------------- | :-----------: | :-----------:
-Rich Cards | A sample bot to renders several types of cards as attachments. | [View Sample](/CSharp/cards-RichCards)[![Deploy to Azure][Deploy Button]][Deploy CSharp/RichCards] | [View Sample](/Node/cards-RichCards)[![Deploy to Azure][Deploy Button]][Deploy Node/RichCards]
-Carousel of Cards | A sample bot that sends multiple rich card attachments in a single message using the Carousel layout. | [View Sample](/CSharp/cards-CarouselCards)[![Deploy to Azure][Deploy Button]][Deploy CSharp/CarouselCards] | [View Sample](/Node/cards-CarouselCards)[![Deploy to Azure][Deploy Button]][Deploy Node/CarouselCards]
-Cards as Attachments | A sample bot that renders several types of cards as attachments, while also showing the generated JSON for each one of these cards at the message's payload. | [View Sample](/CSharp/demo-CardsAttachments)[![Deploy to Azure][Deploy Button]][Deploy CSharp/DemoCardAttachements] | 
+Add a Web Chat channel to your registered bot, and paste in the supplied `<iframe>` code, which points at a Web Chat instance hosted by Microsoft. That was easy, you're done! Please be aware that the version of its Web Chat instance may lag behind the latest release.
 
-## Intelligence
-Build bots with powerful algorithms using Bing & Microsoft Cognitive Services APIs.
+* Want more options, or to run the latest release, or a custom build? Read on.
 
-Sample | Description | C# | Node
------------- | ------------- | :-----------: | :-----------:
-LUIS | A sample bot using LuisDialog to integrate with a LUIS.ai application. | [View Sample](/CSharp/intelligence-LUIS)[![Deploy to Azure][Deploy Button]][Deploy CSharp/LUIS] | [View Sample](/Node/intelligence-LUIS)[![Deploy to Azure][Deploy Button]][Deploy Node/LUIS]
-Image Caption | A sample bot that gets an image caption using Microsoft Cognitive Services Vision API. | [View Sample](/CSharp/intelligence-ImageCaption)[![Deploy to Azure][Deploy Button]][Deploy CSharp/ImageCaption] | [View Sample](/Node/intelligence-ImageCaption)[![Deploy to Azure][Deploy Button]][Deploy Node/ImageCaption]
-Speech To Text | A sample bot that gets text from audio using Bing Speech API. | [View Sample](/CSharp/intelligence-SpeechToText)[![Deploy to Azure][Deploy Button]][Deploy CSharp/SpeechToText] | [View Sample](/Node/intelligence-SpeechToText)[![Deploy to Azure][Deploy Button]][Deploy Node/SpeechToText]
-Similar Products | A sample bot that finds visually similar products using Bing Image Search API. | [View Sample](/CSharp/intelligence-SimilarProducts)[![Deploy to Azure][Deploy Button]][Deploy CSharp/SimilarProducts] | [View Sample](/Node/intelligence-SimilarProducts)[![Deploy to Azure][Deploy Button]][Deploy Node/SimilarProducts]
-Zummer | A sample bot that finds wikipedia articles using Bing Search API  | [View Sample](/CSharp/intelligence-Zummer)[![Deploy to Azure][Deploy Button]][Deploy CSharp/Zummer] | [View Sample](/Node/intelligence-Zummer)[![Deploy to Azure][Deploy Button]][Deploy Node/Zummer]
+### Easy: In your non-React website, run Web Chat inline
 
-## Demo
-These are bots designed to showcase end-to-end sample scenarios. They're great sources of code fragments if you're looking to have your bot lightup more complex features.
+Add a DirectLine (**not Web Chat**) channel, and generate a Direct Line Secret. Make sure to enable Direct Line 3.0.
 
-Sample | Description | C# | Node
------------- | ------------- | :-----------: | :-----------:
-Contoso Flowers | A reference implementation using many features from BotFramework. | [View Sample](/CSharp/demo-ContosoFlowers)[![Deploy to Azure][Deploy Button]][Deploy CSharp/ContosoFlowers] | [View Sample](/Node/demo-ContosoFlowers)[![Deploy to Azure][Deploy Button]][Deploy Node/ContosoFlowers]
-Azure Search | Two sample bots that help the user navigate large amounts of content. | [View Samples](/CSharp/demo-Search) | [View Samples](/Node/demo-Search)[![Deploy to Azure][Deploy Button]][Deploy Node/Search]
-Knowledge Bot | A sample that uses Azure Document DB and Azure Search that searches and filters over an underlying dataset. | [View Sample](/CSharp/sample-KnowledgeBot)[![Deploy to Azure][Deploy Button]][Deploy CSharp/KnowledgeBot] | [View Sample](/Node/sample-knowledgeBot)[![Deploy to Azure][Deploy Button]][Deploy Node/KnowledgeBot]
-Roller Skill | A simple dice rolling skill/bot that's been optimized for speech enabled channels, like Cortana. | [View Sample](/CSharp/demo-RollerSkill)[![Deploy to Azure][Deploy Button]][Deploy CSharp/RollerSkill] | [View Sample](/Node/demo-RollerSkill)[![Deploy to Azure][Deploy Button]][Deploy Node/RollerSkill]
-Payments | A sample bot showing how to integrate with Microsoft Seller Center for payment processing. | [View Sample](/CSharp/sample-payments)[![Deploy to Azure][Deploy Button]][Deploy CSharp/Payments] | [View Sample](/Node/sample-payments)[![Deploy to Azure][Deploy Button]][Deploy Node/Payments]
-LUIS Action Binding | A sample that contains a core implementation for doing LUIS Action Binding. | [View Sample](/CSharp/Blog-LUISActionBinding)[![Deploy to Azure][Deploy Button]][Deploy CSharp/LUISActionBinding] | [View Sample](/Node/blog-LUISActionBinding)
-Skype Calling | A sample bot showing how to use the Skype Bot Plaform for Calling API for receiving and handling Skype voice calls. | [View Sample](/CSharp/skype-CallingBot)[![Deploy to Azure][Deploy Button]][Deploy CSharp/SkypeCallingBot] |
+Include `botchat.css` and `botchat.js` in your website, for example,
 
-[Deploy Button]: https://azuredeploy.net/deploybutton.png
-[Deploy CSharp/SendAttachment]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-SendAttachment
-[Deploy Node/SendAttachment]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-SendAttachment
-[Deploy CSharp/ReceiveAttachment]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-ReceiveAttachment
-[Deploy Node/ReceiveAttachment]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-ReceiveAttachment
-[Deploy CSharp/RichCards]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/cards-RichCards
-[Deploy Node/RichCards]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/cards-RichCards
-[Deploy CSharp/CarouselCards]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/cards-CarouselCards
-[Deploy Node/CarouselCards]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/cards-CarouselCards
-[Deploy CSharp/CreateNewConversation]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-CreateNewConversation
-[Deploy Node/CreateNewConversation]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-CreateNewConversation
-[Deploy CSharp/GetConversationMembers]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-GetConversationMembers
-[Deploy Node/GetConversationMembers]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-GetConversationMembers
-[Deploy CSharp/DirectLine]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-DirectLine
-[Deploy Node/DirectLine]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-DirectLine
-[Deploy CSharp/DirectLineWebSockets]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-DirectLineWebSockets
-[Deploy Node/DirectLineWebSockets]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-DirectLineWebSockets
-[Deploy CSharp/MultiDialogs]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-MultiDialogs
-[Deploy Node/MultiDialogs]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-MultiDialogs
-[Deploy CSharp/State]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-State
-[Deploy Node/State]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-State
-[Deploy CSharp/CustomState]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-CustomState
-[Deploy Node/CustomState]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-CustomState
-[Deploy CSharp/LUIS]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/intelligence-LUIS
-[Deploy Node/LUIS]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/intelligence-LUIS
-[Deploy CSharp/ChannelData]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-ChannelData
-[Deploy Node/ChannelData]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-ChannelData
-[Deploy Node/BlogCustomChannelData]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/blog-customChannelData
-[Deploy CSharp/ContosoFlowers]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/demo-ContosoFlowers
-[Deploy Node/ContosoFlowers]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/demo-ContosoFlowers
-[Deploy CSharp/ImageCaption]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/intelligence-ImageCaption
-[Deploy Node/ImageCaption]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/intelligence-ImageCaption
-[Deploy CSharp/SpeechToText]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/intelligence-SpeechToText
-[Deploy Node/SpeechToText]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/intelligence-SpeechToText
-[Deploy CSharp/SimilarProducts]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/intelligence-SimilarProducts
-[Deploy Node/SimilarProducts]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/intelligence-SimilarProducts
-[Deploy CSharp/AppInsights]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-AppInsights
-[Deploy Node/AppInsights]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-AppInsights
-[Deploy CSharp/Zummer]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/intelligence-Zummer
-[Deploy Node/Zummer]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/intelligence-Zummer
-[Deploy Node/ProgressDialog]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-ProgressDialog
-[Deploy Node/RollerSkill]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill
-[Deploy Node/Search]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/demo-Search
-[Deploy Node/MiddlewareLogging]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/capability-middlewareLogging
-[Deploy Node/SimpleTaskAutomation]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/capability-SimpleTaskAutomation
-[Deploy Node/BasicMultiDialog]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-basicMultiDialog
-[Deploy Node/GlobalMessageHandlers]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/core-globalMessageHandlers
-[Deploy Node/KnowledgeBot]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/sample-knowledgeBot
-[Deploy Node/Payments]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/Node/sample-payments
-[Deploy CSharp/BasicMultiDialog]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-BasicMultiDialog
-[Deploy CSharp/GlobalMessageHandlers]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-GlobalMessageHandlers
-[Deploy CSharp/SimpleTaskAutomation]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/capability-SimpleTaskAutomation
-[Deploy CSharp/BlogCustomChannelData]: https://azuredeploy.net/?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/Blog-CustomChannelData
-[Deploy CSharp/MiddlewareLogging]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/core-Middleware
-[Deploy CSharp/DemoCardAttachements]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/demo-CardsAttachments
-[Deploy CSharp/KnowledgeBot]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/sample-KnowledgeBot
-[Deploy CSharp/RollerSkill]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/demo-RollerSkill
-[Deploy CSharp/Payments]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/sample-payments
-[Deploy CSharp/LUISActionBinding]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/Blog-LUISActionBinding
-[Deploy CSharp/SkypeCallingBot]: https://azuredeploy.net?repository=https://github.com/microsoft/BotBuilder-Samples/tree/master/CSharp/skype-CallingBot
+```HTML
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="bot"/>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+    <script>
+      BotChat.App({
+        directLine: { secret: direct_line_secret },
+        user: { id: 'userid' },
+        bot: { id: 'botid' },
+        resize: 'detect'
+      }, document.getElementById("bot"));
+    </script>
+  </body>
+</html>
+```
+
+> Starting from `0.12.0`, we no longer package polyfills in `botchat.js`. If you are on an older browser, you can use the bundle `botchat-es5.js`, which include polyfills for browsers which support up to ES5.
+
+* `/samples/standalone` has a slightly more sophisticated version of this code, great for testing
+* You can reference to latest release like this, [https://cdn.botframework.com/botframework-webchat/latest/botchat.js](https://cdn.botframework.com/botframework-webchat/latest/botchat.js). Make sure you use the same version for both `botchat.css` and `botchat.js`.
+   * You can also reference to a previously published build, for example, [https://cdn.botframework.com/botframework-webchat/0.11.4/botchat.js](https://cdn.botframework.com/botframework-webchat/0.11.4/botchat.js).
+   * Or if you want to try out latest fixes as on our GitHub `master` branch, you can use [https://cdn.botframework.com/botframework-webchat/0.13.1-master.ea2166a/botchat.js](https://cdn.botframework.com/botframework-webchat/0.13.1-master.ea2166a/botchat.js). For all version information, you can find it on [NPM](https://www.npmjs.com/package/botframework-webchat?activeTab=versions).
+* Don't want to depend on a CDN? Download the files and serve them up from your own website.
+* Want to run a custom build of Web Chat? Clone this repo, [alter it](#customizing-web-chat), [build it](#building-web-chat), and reference your built `botchat.css` and `botchat.js` files.
+* Go to the next level with [Advanced Web Chat](#advanced-web-chat)
+* Running Web Chat inline may not work for some web pages. Read on for a solution.
+
+### Easyish: In any website, IFRAME your Web Chat instance
+
+You can isolate your instance of Web Chat by running it inside an IFRAME. This involves creating two web pages:
+
+1. Your Web Chat instance, as shown above.
+2. The hosting page, adding `<iframe src="/path/to/your/webchat/instance" height="height" width="width" />`
+
+### Medium: In your React website, incorporate the Web Chat React component
+
+Add a DirectLine (**not Web Chat**) channel, and generate a Direct Line Secret. Make sure to enable Direct Line 3.0.
+
+Add Web Chat to your React project via `npm install botframework-webchat`. This will install latest stable build. If you want to try out features and fixes direct from our GitHub, install via `npm install botframework-webchat@master`.
+
+Include the `Chat` component in your React app, e.g.:
+
+```typescript
+import { Chat } from 'botframework-webchat';
+
+...
+
+const YourApp = () => {
+    <div>
+        <YourComponent />
+        <Chat directLine={{ secret: direct_line_secret }} user={{ id: 'user_id', name: 'user_name' }} />
+        <YourOtherComponent />
+    </div>
+}
+
+...
+```
+
+* Go to the next level with [Advanced Web Chat](#advanced-web-chat)
+* Want to run a custom build of Web Chat in your React app? Read on.
+
+### Hard: In your React website, incorporate a custom build of the Web Chat component
+
+The simplest approach is to clone (or fork) this repo, [alter it](#customizing-web-chat), [build it](#building-web-chat), then reference your local build in your project's `package.json` as follows:
+
+```javascript
+dependencies: {
+    ...
+    'botframework-webchat': 'file:/path/to/your/repo'
+    ...
+}
+```
+
+Running `npm install` will copy your local repo to `node_modules`, and `import`/`require` references to `'botframework-webchat'` will resolve correctly.
+
+You may also wish to go so far as to publish your repo as its own full-fledged, versioned npm package using `npm version` and `npm publish`, either privately or publicly.
+
+Different projects have different build strategies, yours may vary considerably from the above. If you come up with a different integration approach that you feel would have broad application, please consider filing a [pull request](https://github.com/Microsoft/BotFramework-WebChat/pulls) for this README.
+
+## Building Web Chat
+
+1. Clone (or fork) this repo
+2. `npm install`
+3. `npm run build` (to build on every change `npm run watch`, to build production `npm run prepublish`)
+
+This builds the following:
+
+* `/built/*.js` compiled from the TypeScript sources in `/src/*.js` - `/built/BotChat.js` is the root
+* `/built/*.d.ts` declarations for TypeScript users - `/built/BotChat.d.ts` is the root
+* `/built/*.js.map` sourcemaps for easier debugging
+* `/botchat.js` webpacked UMD file containing all dependencies (React, Redux, RxJS, etc.)
+* `/botchat.css` base stylesheet
+* `/botchat-es5.js` is the Webpack bundle (a.k.a. `botchat.js`) plus polyfills for ES5 browsers
+* `/botchat-fullwindow.css` media query stylesheet for a full-window experience
+
+## Customizing Web Chat
+
+### Enabling Speech Capabilities
+
+Web Chat includes support for spoken conversations by leveraging Speech Recognition (audio to text) and Speech Synthesis (text to audio).
+
+Speech support is opt-in. As shown in `/samples/speech`, you can customize the speech experience by supplying a specific implementation for speech recognition and speech synthesis to be used.
+
+ ```HTML
+...
+   <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+   <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
+...
+```
+```typescript
+var speechOptions = {
+    speechRecognizer: new CognitiveServices.SpeechRecognizer( { subscriptionKey: 'YOUR_COGNITIVE_SPEECH_API_KEY' } ),
+
+    speechSynthesizer: new CognitiveServices.SpeechSynthesizer(
+        {
+            subscriptionKey: 'YOUR_COGNITIVE_SPEECH_API_KEY',
+            gender: CognitiveServices.SynthesisGender.Female,
+            voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
+        })
+}
+
+...
+
+BotChat.App({
+    botConnection: botConnection,
+    speechOptions: speechOptions,
+    ...
+}, document.getElementById("BotChatGoesHere"));
+```
+
+For details related to building a speech enabled bot and leveraging Speech Priming to improve speech recognition accuracy, check out the [Speech Support in Bot Framework](https://blog.botframework.com/2017/06/26/Speech-To-Text) blog post.
+
+### Styling
+
+In the `/src/scss/` folder you will find the source files for generating `/botchat.css`. Run `npm run build-css` to compile once you've made your changes. For basic branding, change `colors.scss` to match your color scheme. For advanced styling, change `botchat.scss`.
+
+#### Card Layout
+
+Web Chat uses [Adaptive Cards](https://adaptivecards.io) that let the bot developer create cards with advanced layout and interactive capabilities. For more details, see [AdaptiveCards.md](AdaptiveCards.md)
+
+#### Card Sizes / Responsiveness
+
+Web Chat strives to use responsive design when possible. As part of this, Web Chat cards come in 3 sizes: narrow (216px), normal (320px) and wide (416px). In a full-window chat, these sizes are invoked by a CSS media query in the `/botchat-fullwindow.css` style sheet. You may customize this style sheet for the media query breakpoints in your own application. Or, if your Web Chat implementation is not a full-window experience, you can manually invoke card sizes by adding the CSS classes `wc-narrow` and `wc-wide` to the HTML element containing your chat.
+
+### Strings
+
+You can alter or add localized strings in [/src/Strings.ts](src/Strings.ts):
+
+* Add one or more locales (with associated localized strings) to `localizedStrings`
+* Add logic to map the requested locale to the supported locale in `strings`
+* Please help the community by submitting a [pull request](https://github.com/Microsoft/BotFramework-WebChat/pulls).
+
+### Behaviors
+
+Behavioral customization will require changing the TypeScript files in `/src`. A full description of the architecture of Web Chat is beyond the scope of this document, but here are a few starters:
+
+### Architecture
+
+* `Chat` is the top-level React component
+* `App` creates a React application consists solely of `Chat`
+* `Chat` largely follows the Redux architecture laid out in [this video series](https://egghead.io/lessons/javascript-redux-the-single-immutable-state-tree)
+* To handle async side effects of Redux actions, `Chat` uses `Epic` from [redux-observable](https://redux-observable.js.org) - here's a [video introduction](https://www.youtube.com/watch?v=sF5-V-Szo0c)
+* Underlying `redux-observable` (and also [DirectLineJS](https://github.com/microsoft/botframework-directlinejs)) is the `RxJS` library, which implements the Observable pattern for wrangling async. A minimal grasp of `RxJS` is key to understanding Web Chat's plumbing.
+
+### Markdown
+
+Web Chat uses [markdown-it](https://markdown-it.github.io/) for markdown rendering. Markdown-it offers many rendering [options](https://github.com/markdown-it/markdown-it#init-with-presets-and-options), such as HTML rendering within markdown. You can change these options in `/src/FormattedText.tsx` in your own build of Web Chat.
+
+### Contributing
+
+If you feel your change might benefit the community, please submit a [pull request](https://github.com/Microsoft/BotFramework-WebChat/pulls).
+
+## Advanced Web Chat
+
+### Direct Line and DirectLineJS
+
+Web Chat communicates with your bot using the [Direct Line 3.0](https://docs.botframework.com/en-us/restapi/directline3/) protocol. Web Chat's implementation of this protocol is called [DirectLineJS](https://github.com/microsoft/botframework-directlinejs) and can be installed and used independently of Web Chat if you want to create your own user experience.
+
+#### Direct Line fundamentals
+
+Web Chat exchanges *activities* with the bot. The most common activity type is 'message', but there is also 'typing', and 'event'. For more information on how to use 'event' activities, see [The Backchannel](#the-backchannel).
+
+#### Named Direct Line endpoint
+
+If you wish to point to a specific URL for Direct Line (such as a region-specific endpoint), pass it to DirectLine as `domain: direct_line_url`.
+
+#### Secrets versus Tokens
+
+If you don't want to publish your Direct Line Secret (which lets anyone put your bot on their website), exchange that Secret for a Token as detailed in the Direct Line [documentation](https://docs.botframework.com/en-us/restapi/directline3/) and pass it to DirectLine as `token: direct_line_token`. If you do choose to pass a Token instead of a Secret, you may need to handle scenarios where Web Chat has become disconnected from the bot and needs a fresh token to reconnect. See the DirectLineJS [reconnect](https://github.com/microsoft/botframework-directlinejs#reconnect-to-a-conversation) documentation for a few more details on how to do this.
+
+#### WebSocket
+
+DirectLineJS defaults to WebSocket for receiving messages from the bot. If WebSocket is not available, it will use GET polling. You can force it to use GET polling by passing `webSocket: false` in the options you pass to DirectLine.
+
+Note: the standard Web Chat channel does not currently use WebSocket, which is a compelling reason to use this project.
+
+### Typing
+
+Web Chat currently defaults to *not* sending 'typing' activities to the bot when the user is typing. If your bot would find it useful to receive these, pass `sendTyping: true` in the options to `App`/`Chat`. In the future this feature may be enabled by default, so set `sendTyping: false` if you want to make sure to disable it.
+
+### User identity
+
+You can supply Web Chat with the id (and, optionally, a friendly name) of the current user by passing `user: { id: user_id, name: user_name }` to `App`/`Chat`. This object is passed with every activity sent from Web Chat to the bot, which means it is not available to the bot *before* any activities are sent. See [The Backchannel](#the-backchannel) to find out how your web page can programmatically send non-message activities to the bot.
+
+### Replacing DirectLineJS
+
+You can give Web Chat any object that implements `IBotConnection` by passing `botConnection: your_directline_replacement` to `App`/`Chat`.
+
+### The Backchannel
+
+Web Chat can either create its own instance of DirectLine (as shown in `/samples/standalone`), or it can share one with the hosting page (as shown in `/samples/backchannel`). In the shared case, Web Chat and/or the page can send and/or receive activities. If they are type 'event', Web Chat will not display them. This is how the backchannel works.
+
+NOTE: The provided backchannel sample requires a bot which can send and receive specific event activities. Follow the instructions [here](https://github.com/ryanvolum/backChannelBot) to deploy such a bot.
+
+The backchannel sample provided in this project listens for events of name "changeBackground" and sends events of name "buttonClicked". This highlights the ability for a bot to communicate with the page that embeds Web Chat.
+
+In the sample above, the web page creates a DirectLine object:
+
+```typescript
+var botConnection = new BotChat.DirectLine(...);
+```
+
+It shares this when creating the Web Chat instance:
+
+```typescript
+BotChat.App({
+    botConnection: botConnection,
+    user: user
+    ...
+}, document.getElementById("BotChatGoesHere"));
+```
+
+It notifies the bot upon the click of a button on the web page:
+
+```typescript
+const postButtonMessage = () => {
+    botConnection
+        .postActivity({ type: "event", value: "", from: { id: "me" }, name: "buttonClicked" })
+        .subscribe(id => console.log("success"));
+    }
+```
+
+Note the creation of an activity of type 'event' and how it is sent with `postActivity`. Also note that the name and value of the event can be anything defined by the developer. It is simply a contract between the web page and the bot.
+
+The client JavaScript also listens for a specific event from the bot:
+
+```typescript
+botConnection.activity$
+    .filter(activity => activity.type === "event" && activity.name === "changeBackground")
+    .subscribe(activity => changeBackgroundColor(activity.value))
+```
+
+The bot, in this example, can request the page to change the background color via a specific event with `name: 'changeBackground'`. The web page can respond to this in any way it wants, including ignoring it. In this case it cooperates by changing the background color as passed in the `value` field of the event.
+
+Essentially the backchannel allows client and server to exchange any data needed, from requesting the client's time zone to reading a GPS location or what the user is doing on a web page. The bot can even "guide" the user by automatically filling out parts of a form and so on. The backchannel closes the gap between client JavaScript and bots.
+
+## You can contribute to Web Chat!
+
+* Add localized strings (see [above](#strings))
+* Report any unreported [issues](https://github.com/Microsoft/BotFramework-WebChat/issues)
+* Propose new [features](https://github.com/Microsoft/BotFramework-WebChat/issues)
+* Fix an outstanding [issue](https://github.com/Microsoft/BotFramework-WebChat/issues) and submit a [pull request](https://github.com/Microsoft/BotFramework-WebChat/pulls) *(please only commit source code, non-generated files)*
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+## Copyright & License
+
+© 2016 Microsoft Corporation
+
+[MIT License](/LICENSE)
